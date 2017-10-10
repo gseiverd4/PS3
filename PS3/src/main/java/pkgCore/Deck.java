@@ -2,15 +2,16 @@ package pkgCore;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.stream.Collectors;
 import pkgEnum.eRank;
 import pkgEnum.eSuit;
-
+//last commit
 public class Deck {
 
 	private ArrayList<Card> cardsInDeck;
 
 	public Deck() {
+		cardsInDeck = new ArrayList<Card>();
 		for (eSuit eSuit : eSuit.values()) {
 			for (eRank eRank : eRank.values()) {
 				cardsInDeck.add(new Card(eSuit, eRank));
@@ -18,20 +19,58 @@ public class Deck {
 		}
 		Collections.shuffle(cardsInDeck);
 	}
-
-	//TODO: Fix the Draw method so it throws an exception if the deck is empty
+	
 	public Card Draw() {
-		return cardsInDeck.remove(0);
+		//attempt to remove the first card
+		try {
+			return cardsInDeck.remove(0);
+		}
+		//catch the exception that there's no cards
+		//throw the "There's no cards left"
+		catch (Exception EXCEPT) {
+			System.out.println("No cards left");
+			throw EXCEPT;
+			}
+	}
+	public Card Draw(eSuit eSuit) {
+			for (Card newCard: this.cardsInDeck) {
+					if (newCard.geteSuit() == eSuit) {
+						cardsInDeck.remove(newCard);
+						return newCard;
+					}
+			}
+			return null;
 	}
 	
-	//TODO: Write an overloaded Draw method to Draw a card of a given eSuit
+	public Card Draw(eRank eRank) {
+		for (Card newCard: this.cardsInDeck) {
+				if (newCard.geteRank() == eRank) {
+					cardsInDeck.remove(newCard);
+					return newCard;
+				}
+		}
+		return null;
+	}
 	
-	//TODO: Write an overloaded Draw method to Draw a card of a given eRank
-
-	//TODO: Write a method that will return the number of a given eSuit left in the deck.
+	public int Count(eSuit eSuit) {
+			ArrayList<Card> CardSuit = cardsInDeck.stream().filter(type -> type.geteSuit() == eSuit)
+							.collect(Collectors.toCollection(ArrayList::new));
+			return CardSuit.size();
+			
+	}
 	
-	//TODO: Write a method that will return the number of a given eRank left in the deck.
+	public int Count(eRank eRank) {
+			ArrayList<Card> CardRank = cardsInDeck.stream().filter(type -> type.geteRank() == eRank)
+							.collect(Collectors.toCollection(ArrayList::new));
+			return CardRank.size();
+	}
 	
-	//TODO: Write a method that will return 0 or 1 if a given card is left in the deck.
-	
+	public int FinalCard(Card c) {
+		for (Card cards:cardsInDeck)
+		{
+			if (cards == c)
+				return 1;
+		}
+		return 0;
+	}
 }

@@ -4,13 +4,16 @@ import pkgEnum.*;
 
 public class Card implements Comparable {
 
+
 	private eSuit eSuit;
 	private eRank eRank;
+	
 
 	public Card(pkgEnum.eSuit eSuit, pkgEnum.eRank eRank) {
 		super();
 		this.eSuit = eSuit;
 		this.eRank = eRank;
+		
 	}
 
 	public eRank geteRank() {
@@ -28,6 +31,7 @@ public class Card implements Comparable {
 	private void seteRank(eRank eRank) {
 		this.eRank = eRank;
 	}
+	
 
 	@Override
 	public int compareTo(Object o) {
