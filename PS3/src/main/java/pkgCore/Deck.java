@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import pkgEnum.eRank;
 import pkgEnum.eSuit;
 
-public class Deck {
+public class Deck { 
 
 	private ArrayList<Card> cardsInDeck;
 
