@@ -53,15 +53,13 @@ public class Deck {
 	}
 	
 	public int Count(eSuit eSuit) {
-			ArrayList<Card> CardSuit = cardsInDeck.stream().filter(type -> type.geteSuit() == eSuit)
-							.collect(Collectors.toCollection(ArrayList::new));
+			ArrayList<Card> CardSuit = cardsInDeck.stream().filter(type -> type.geteSuit() == eSuit).collect(Collectors.toCollection(ArrayList::new));
 			return CardSuit.size();
 			
 	}
 	
 	public int Count(eRank eRank) {
-			ArrayList<Card> CardRank = cardsInDeck.stream().filter(type -> type.geteRank() == eRank)
-							.collect(Collectors.toCollection(ArrayList::new));
+			ArrayList<Card> CardRank = cardsInDeck.stream().filter(type -> type.geteRank() == eRank).collect(Collectors.toCollection(ArrayList::new));
 			return CardRank.size();
 	}
 	
