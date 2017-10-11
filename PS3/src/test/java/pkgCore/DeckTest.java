@@ -4,29 +4,66 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import org.junit.rules.ExpectedException;
+
+import pkgEnum.eRank;
+
+import pkgEnum.eSuit;
+
 public class DeckTest {
+	
+	public ExpectedException newException = ExpectedException.none();
 
 	@Test
 	public void TestEmptyDeck() {
-		//TODO: Build a deck, draw until you get a DeckException
+			Deck deck = new Deck();
+			for (int i = 1; 
+					i <= 52; 
+					i++) {
+				newException.expect(IndexOutOfBoundsException.class);
+				deck.Draw();
+				System.out.println("card " + i);
+		}
 	}
 	
 	@Test
 	public void TestDrawSuit() {
-		//TODO: Build a deck, test the Draw(eSuit) method
+		Deck deck = new Deck();
+		for (int i = 1;
+				i<= 4; 
+				i++) {
+			assertEquals(deck.Draw(eSuit.SPADES).geteSuit(), new Card(eSuit.SPADES,
+					eRank.SEVEN).geteSuit());
+		}
 	}
 	
 	@Test
 	public void TestDrawRank() {
-		//TODO: Build a deck, test the Draw(eRank) method
+		Deck deck = new Deck();
+		for (int i = 1; 
+				i <= 13; 
+				i++) {
+			assertEquals(deck.Draw(eRank.SEVEN).geteRank(), new Card(eSuit.CLUBS, eRank.SEVEN).geteRank());
+		}
 	}
 	
 	public void TestDeckRankCount() {
-		//TODO: Build a deck, test the DeckRankCount method
+		Deck deck = new Deck();
+		for (int i = 13; 
+				i > 0; 
+				i--) {
+			assertEquals(deck.Count(eRank.JACK), i);
+				deck.Draw(eRank.JACK);
+		}
 	}
 	
 	public void TestDeckSuitCount() {
-		//TODO: Build a deck, test the DeckSuitCount method
+		Deck deck = new Deck();
+		for (int i = 4; 
+				i > 0; 
+				i--) {
+			assertEquals(deck.Count(eSuit.DIAMONDS), i);
+				deck.Draw(eSuit.DIAMONDS);
+		}
 	}
-
 }
