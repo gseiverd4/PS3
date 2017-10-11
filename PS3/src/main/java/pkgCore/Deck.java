@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 import pkgEnum.eRank;
 import pkgEnum.eSuit;
+
 //last commit
 public class Deck {
 
@@ -53,12 +54,14 @@ public class Deck {
 	}
 	
 	public int Count(eSuit eSuit) {
+    
 			ArrayList<Card> CardSuit = cardsInDeck.stream().filter(type -> type.geteSuit() == eSuit).collect(Collectors.toCollection(ArrayList::new));
 			return CardSuit.size();
 			
 	}
 	
 	public int Count(eRank eRank) {
+
 			ArrayList<Card> CardRank = cardsInDeck.stream().filter(type -> type.geteRank() == eRank).collect(Collectors.toCollection(ArrayList::new));
 			return CardRank.size();
 	}
